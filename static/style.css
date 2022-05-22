@@ -1,15 +1,18 @@
+:root {
+    --topbg: rgb(193, 228, 240);
+    --topcolor: rgb(3, 3, 99);;
+}
+
 html {
     height: 100%;
 }
 
 body {
-    --topcolor: rgb(193, 228, 240);
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    /*background-color: rgb(193, 228, 240);*/
-    background-image: linear-gradient(--topcolor, rgb(193, 228, 240));
+    background-image: linear-gradient(var(--topbg), rgb(193, 228, 240));
 }
 
 img {
@@ -38,6 +41,6 @@ div {
  
 }
 
-div.location {
-    color:rgb(193, 228, 240)
+div.top {
+    color: var(--topcolor);
 }

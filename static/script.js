@@ -20,7 +20,7 @@ function asciiize(str) {
     if (str.includes("Š")) {str = str.replace("Š", "S");}
     if (str.includes("Đ")) {str = str.replace("Đ", "Dj");}
     if (str.includes("Ž")) {str = str.replace("Ž", "Z");}
-    return str
+    return str;
 }
 
 function titleCase(str) {
@@ -42,12 +42,12 @@ function prevod(rijec) {
     "Isolated thunderstorms": "Lokalne oluje", "Partly cloudy": "Djelimično oblačno",
     "Clear with periodic clouds": "Vedro s povremenom naoblakom", "Cloudy": "Oblačno",
     "Mostly cloudy": "Pretežno oblačno", "Haze": "Izmaglica", "Widespread dust": "Naleti prašine",
-    "Light rain showers": "Slabi pljuskovi"}
+    "Light rain showers": "Slabi pljuskovi","Rain": "Kiša"};
     if (rijec in rjecnik) {
-        return rjecnik[rijec]
+        return rjecnik[rijec];
     }
     else {
-        return rijec
+        return rijec;
     }
 }
 
@@ -57,33 +57,46 @@ function preloadImage(url) {
 }
 
 function setGradient(condition) {
-    var r = document.querySelector(':root');
-    if (condition == "overcast") {
-        r.style.setProperty('--topcolor', rgb(82, 96, 100))
+    var r = document.documentElement;
+    if (condition.includes("loud") || condition.includes("ain") || condition.includes("hunder")) {
+        r.style.setProperty('--topbg', rgb(82, 96, 100));
+        r.style.setProperty('--topcolor', rgb(193, 228, 240));
     }
     else {
-        r.style.setProperty('--topcolor', rgb(193, 228, 240))
+        r.style.setProperty('--topbg', rgb(193, 228, 240));
+        r.style.setProperty('--topcolor', rgb(3, 3, 99));
     }
-
 }
+
+function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgb(r, g, b) {
+    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}  
 
 function writeWeatherData() {
     document.getElementById("loading").innerHTML = "Učitavanje...";
-    document.getElementById("submitBtn").disabled = true
+    document.getElementById("submitBtn").disabled = true;
     fetchAsync().then((data) => {
         preloadImage(data["currentConditions"]["iconURL"])
-        document.getElementById("loading").innerHTML = ""
-        document.getElementById("submitBtn").disabled = false
-        document.title = "Vrijeme - "+titleCase(data["region"].split(',')[0])
-        document.getElementById("iconToday").src = data["currentConditions"]["iconURL"]
-        document.getElementById("region").innerHTML = data["region"]
-        document.getElementById("commentToday").innerHTML = prevod(data["currentConditions"]["comment"])
-        let dayhour = data["currentConditions"]["dayhour"].split(' ')
-        document.getElementById("dayhour").innerHTML = [prevod(dayhour[0]), dayhour[1], dayhour[2]].join(' ')
-        document.getElementById("temp").innerHTML = "Temperatura: " + data["currentConditions"]["temp"]["c"] + "°C"
-        document.getElementById("humidity").innerHTML = "Vlažnost vazduha: " + data["currentConditions"]["humidity"]
-        document.getElementById("precip").innerHTML = "Šansa za padavine: " + data["currentConditions"]["precip"]
-        document.getElementById("wind").innerHTML = "Brzina vjetra: " + data["currentConditions"]["wind"]["km"] + "km/s"
+        document.getElementById("loading").innerHTML = "";
+        document.getElementById("submitBtn").disabled = false;
+
+        document.title = "Vrijeme - "+titleCase(data["region"].split(',')[0]);
+        document.getElementById("iconToday").src = data["currentConditions"]["iconURL"];
+        document.getElementById("region").innerHTML = data["region"];
+        document.getElementById("commentToday").innerHTML = prevod(data["currentConditions"]["comment"]);
+        setGradient(data["currentConditions"]["comment"]);
+
+        let dayhour = data["currentConditions"]["dayhour"].split(' ');
+        document.getElementById("dayhour").innerHTML = [prevod(dayhour[0]), dayhour[1], dayhour[2]].join(' ');
+        document.getElementById("temp").innerHTML = "Temperatura: " + data["currentConditions"]["temp"]["c"] + "°C";
+        document.getElementById("humidity").innerHTML = "Vlažnost vazduha: " + data["currentConditions"]["humidity"];
+        document.getElementById("precip").innerHTML = "Šansa za padavine: " + data["currentConditions"]["precip"];
+        document.getElementById("wind").innerHTML = "Brzina vjetra: " + data["currentConditions"]["wind"]["km"] + "km/s";
         
     });
 }
