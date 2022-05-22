@@ -67,11 +67,17 @@ function rgb(r, g, b) {
 
 function setSvg(condition) {
     var r = document.documentElement;
-    if (condition.includes("loud") || condition.includes("ain") || condition.includes("hunder")) {
-        r.style.setProperty('--svg', '/static/cloudy.svg');
+    if (condition == "Cloudy") {
+        r.style.setProperty('--svg', "url('/static/cloudy.svg')");
+    }
+    else if (condition == "Rain") {
+        r.style.setProperty('--svg', "url('/static/rain.svg')");
+    }
+    else if (condition == "Mostly sunny") {
+        r.style.setProperty('--svg', "url('/static/mostly sunny.svg')");
     }
     else {
-        r.style.setProperty('--svg', '/static/sunny.svg');
+        r.style.setProperty('--svg', "url('/static/sunny.svg')");
     }
 }
 
