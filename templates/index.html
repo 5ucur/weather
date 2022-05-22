@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vremenska prognoza</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="preload" as="image" href="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png">
+        <link rel="preload" as="image" href="https://ssl.gstatic.com/onebox/weather/48/thunderstorms.png">
+        <link rel="preload" as="image" href="https://ssl.gstatic.com/onebox/weather/48/rain_s_cloudy.png">
+        <link rel="preload" as="image" href="https://ssl.gstatic.com/onebox/weather/48/rain_light.png">
+        <link rel="preload" as="image" href="https://ssl.gstatic.com/onebox/weather/48/sunny.png">
+
+    </head>
+    <body>
+        <div class="location">
+            <label for="where">Lokacija:</label><br>
+            <input type="text" id="whereField" name="where" value="{{ request.form['where'] }}" autofocus/>
+            <input type="submit", id="submitBtn", value="Pronađi"/>
+            <div id="loading"></div>
+        </div>
+        <script src="/static/script.js"></script>
+        <img id="iconToday" src=""></img>
+        <div id="commentToday"></div>
+        <div id="region"></div>
+        <div id="dayhour"></div>
+        <div id="temp"></div>
+        <div id="humidity"></div>
+        <div id="precip"></div>
+        <div id="wind"></div>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+html {
+    height: 100%;
+}
+
+body {
+    --topcolor: rgb(193, 228, 240);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /*background-color: rgb(193, 228, 240);*/
+    background-image: linear-gradient(--topcolor, rgb(193, 228, 240));
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aliceblue;
+}
+
+input {
+    font-size: large;
+    box-sizing: border-box;
+}
+
+input:focus {
+    color: rgb(43, 43, 142);
+}
+
+div {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: xx-large;
+    color: rgb(3, 3, 99);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+ 
+}
+
+div.location {
+    color:rgb(193, 228, 240)
+}
