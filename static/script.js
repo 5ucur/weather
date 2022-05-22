@@ -112,7 +112,7 @@ function writeWeatherData() {
         document.getElementById("temp").innerHTML = "Temperatura: " + data["currentConditions"]["temp"]["c"] + "°C";
         document.getElementById("humidity").innerHTML = "Vlažnost vazduha: " + data["currentConditions"]["humidity"];
         document.getElementById("precip").innerHTML = "Šansa za padavine: " + data["currentConditions"]["precip"];
-        document.getElementById("wind").innerHTML = "Brzina vjetra: " + data["currentConditions"]["wind"]["km"] + "km/s";
+        document.getElementById("wind").innerHTML = "Brzina vjetra: " + data["currentConditions"]["wind"]["km"] + "km/h";
         
     });
 }
