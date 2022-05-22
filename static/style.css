@@ -1,6 +1,5 @@
 :root {
-    --topbg: rgb(193, 228, 240);
-    --topcolor: rgb(3, 3, 99);;
+    --svg: 'sunny'
 }
 
 html {
@@ -12,14 +11,16 @@ body {
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-image: linear-gradient(var(--topbg), rgb(193, 228, 240));
+    background-color: rgb(193, 228, 240);
+    /*background-image: linear-gradient(var(--topbg), rgb(193, 228, 240));*/
+    background-image: '/static/'+--svg+'.svg';
 }
 
 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    background-color: aliceblue;
+    background-color: var(--topbg);
 }
 
 input {
