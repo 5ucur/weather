@@ -75,11 +75,29 @@ function setSvg(condition) {
     }
 }
 
+function clearData() {
+    document.getElementById("iconToday").src = "";
+    document.getElementById("region").innerHTML = "";
+    document.getElementById("commentToday").innerHTML = "";
+    document.getElementById("dayhour").innerHTML = "";
+    document.getElementById("temp").innerHTML = "";
+    document.getElementById("humidity").innerHTML = "";
+    document.getElementById("precip").innerHTML = "";
+    document.getElementById("wind").innerHTML = "";
+}
+
 function writeWeatherData() {
     document.getElementById("loading").innerHTML = "Učitavanje...";
     document.getElementById("submitBtn").disabled = true;
+    clearData()
     fetchAsync().then((data) => {
-        preloadImage(data["currentConditions"]["iconURL"])
+        try {
+            preloadImage(data["currentConditions"]["iconURL"])
+        } catch {
+            document.getElementById("loading").innerHTML = "Lokacija nije pronađena.";
+            document.getElementById("submitBtn").disabled = false;
+            return
+        }        
         document.getElementById("loading").innerHTML = "";
         document.getElementById("submitBtn").disabled = false;
 
