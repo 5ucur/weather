@@ -68,10 +68,10 @@ function rgb(r, g, b) {
 function setSvg(condition) {
     var r = document.documentElement;
     if (condition.includes("loud") || condition.includes("ain") || condition.includes("hunder")) {
-        r.style.setProperty('--svg', 'cloudy');
+        r.style.setProperty('--svg', '/static/cloudy.svg');
     }
     else {
-        r.style.setProperty('--svg', 'sunny');
+        r.style.setProperty('--svg', '/static/sunny.svg');
     }
 }
 

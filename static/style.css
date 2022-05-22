@@ -1,5 +1,5 @@
 :root {
-    --svg: 'sunny'
+    --svg: '/static/sunny.svg'
 }
 
 html {
@@ -13,7 +13,7 @@ body {
     background-attachment: fixed;
     background-color: rgb(193, 228, 240);
     /*background-image: linear-gradient(var(--topbg), rgb(193, 228, 240));*/
-    background-image: '/static/'+--svg+'.svg';
+    background-image: var(--svg);
 }
 
 img {
