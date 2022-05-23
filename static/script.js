@@ -82,7 +82,6 @@ function setSvg(condition) {
 }
 
 function clearData() {
-    document.getElementById("iconToday").src = "";
     document.getElementById("region").innerHTML = "";
     document.getElementById("commentToday").innerHTML = "";
     document.getElementById("dayhour").innerHTML = "";
@@ -108,8 +107,7 @@ function writeWeatherData() {
         document.getElementById("submitBtn").disabled = false;
 
         document.title = "Vrijeme - "+titleCase(data["region"].split(',')[0]);
-        document.getElementById("iconToday").src = data["currentConditions"]["iconURL"];
-        document.getElementById("region").innerHTML = data["region"];
+	    document.getElementById("region").innerHTML = data["region"];
         document.getElementById("commentToday").innerHTML = prevod(data["currentConditions"]["comment"]);
 
         setSvg(data["currentConditions"]["comment"]);
